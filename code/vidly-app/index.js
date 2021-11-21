@@ -4,7 +4,12 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
+//built in middleware functions
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //allows for form value submission in key/val pairs
+app.use(express.static('public'));
+
+//custom middleware functions
 app.use(logger);
 app.use(authenticator);
 
