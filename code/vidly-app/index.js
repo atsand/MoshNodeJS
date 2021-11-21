@@ -1,4 +1,6 @@
 const Joi = require('joi');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const logger = require('./logger');
 const authenticator = require('./authenticator');
 const express = require('express');
@@ -8,6 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //allows for form value submission in key/val pairs
 app.use(express.static('public'));
+
+//third party middleware
+app.use(helmet());
+app.use(morgan('tiny'));
 
 //custom middleware functions
 app.use(logger);
