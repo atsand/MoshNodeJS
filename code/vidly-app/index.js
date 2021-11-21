@@ -6,6 +6,10 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
+//two ways to check current environment
+// console.log(`NODE_ENV is: ${process.env.NODE_ENV}`);
+// console.log(`app: ${app.get('env')}`);
+
 //built in middleware functions
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //allows for form value submission in key/val pairs
@@ -13,7 +17,12 @@ app.use(express.static('public'));
 
 //third party middleware
 app.use(helmet());
-app.use(morgan('tiny'));
+
+//enable only in development
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  console.log('Morgan enabled...');
+}
 
 //custom middleware functions
 app.use(logger);
