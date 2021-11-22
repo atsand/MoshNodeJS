@@ -1,4 +1,6 @@
 const config = require('config');
+const startupDebugger = require('debug')('app:startup');
+// const dbDebugger = require('debug')('app:db');
 const Joi = require('joi');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -27,8 +29,11 @@ app.use(helmet());
 //enable only in development
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
-  console.log('Morgan enabled...');
+  startupDebugger('Morgan enabled...');
 }
+
+//db debugger
+// dbDebugger('Debugging db...');
 
 //custom middleware functions
 app.use(logger);
