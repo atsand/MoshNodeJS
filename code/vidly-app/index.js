@@ -9,6 +9,10 @@ const authenticator = require('./authenticator');
 const express = require('express');
 const app = express();
 
+//set view engine
+app.set('view engine', 'pug');
+app.set('views', './views'); //default (don't have to set this)
+
 //two ways to check current environment
 // console.log(`NODE_ENV is: ${process.env.NODE_ENV}`);
 // console.log(`app: ${app.get('env')}`);
@@ -44,6 +48,10 @@ let genres = [
   { id: 2, name: 'horror' },
   { id: 3, name: 'mystery' },
 ];
+
+app.get('/', (req, res) => {
+  res.render('index', { title: 'My Express App', message: 'Hello' });
+});
 
 app.get('/api/genres', (req, res) => {
   res.send(genres);
