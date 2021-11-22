@@ -1,3 +1,4 @@
+const config = require('config');
 const Joi = require('joi');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -14,6 +15,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //allows for form value submission in key/val pairs
 app.use(express.static('public'));
+
+//configuration
+console.log(`Application Name: ${config.get('name')}`);
+console.log(`Mail Server Name: ${config.get('mail.host')}`);
+console.log(`Mail Server Password: ${config.get('mail.password')}`);
 
 //third party middleware
 app.use(helmet());
