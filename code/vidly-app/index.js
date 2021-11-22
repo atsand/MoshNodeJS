@@ -24,7 +24,7 @@ const app = express();
 //built in middleware functions
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //allows for form value submission in key/val pairs
-app.use(express.static('public'));
+app.use(express.static('public')); //serve static files from the public folder
 
 //routing
 app.use('/api/genres', genres);
