@@ -50,7 +50,7 @@ let genres = [
 ];
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'My Express App', message: 'Hello' });
+  res.send('Hello World');
 });
 
 app.get('/api/genres', (req, res) => {
